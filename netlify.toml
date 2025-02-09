@@ -1,3 +1,4 @@
  [build]
   publish = "learning_log/static"
   command = "python manage.py collectstatic --noinput"
+  environment = { PYTHON_VERSION = "3.13" }
