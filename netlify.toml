@@ -1,4 +1,4 @@
  [build]
   publish = "learning_log/static"
-  command = "python manage.py collectstatic --noinput"
+  command = "python manage.py collectstatic && gunicorn --workers 2 learning_log.wsgi"
   environment = { PYTHON_VERSION = "3.13" }
