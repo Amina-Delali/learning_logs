@@ -74,7 +74,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'learning_log.wsgi.application'
+# WSGI_APPLICATION = 'learning_log.wsgi.application'
+WSGI_APPLICATION = 'learning_log.wsgi.app'
 
 
 # Database
@@ -82,8 +83,12 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'learninglog',
+        'USER': 'learner',
+        'PASSWORD': 'm!mOP21?3T',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -151,7 +156,7 @@ if os.getcwd() == '/app':
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers.
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*',"127.0.0.1", ".vercel.app", ".now.sh"]
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
