@@ -12,8 +12,20 @@ import os
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
 
+from whitenoise import WhiteNoise
+
+from learning_log import MyWSGIApp
+
+
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'learning_log.settings')
 application = Cling(get_wsgi_application())
 application = get_wsgi_application()
 # add this vercel variable
+app = application
+
+application = MyWSGIApp()
+application = WhiteNoise(application, root="/static")
+application.add_files("/staticfiles", prefix="static-files/")
+
 app = application
