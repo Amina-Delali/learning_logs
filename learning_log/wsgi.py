@@ -25,7 +25,7 @@ application = get_wsgi_application()
 app = application
 
 application = MyWSGIApp()
-application = WhiteNoise(application, root="/static")
-application.add_files("/staticfiles", prefix="static-files/")
+application = WhiteNoise(application, root="static")
+application.add_files("staticfiles", prefix="staticfiles/")
 
 app = application
