@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^f5)-ikokhvgm(@&kwcdmih1_2xvdz^utec$h73i178-(k!)ye'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -169,8 +169,9 @@ ALLOWED_HOSTS = ['*',"127.0.0.1", ".vercel.app", ".now.sh"]
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles','static'))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 
