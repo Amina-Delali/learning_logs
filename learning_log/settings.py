@@ -170,7 +170,7 @@ ALLOWED_HOSTS = ['*',"127.0.0.1", ".vercel.app", ".now.sh"]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles','static'))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
