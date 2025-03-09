@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
+
     
     # Third party apps
     'bootstrap3',   
@@ -88,17 +92,24 @@ STORAGES = {
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+from dotenv import load_dotenv
+load_dotenv()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'learninglog',
-        'USER': 'learner',
-        'PASSWORD': 'm!mOP21?3T',
-        'HOST': 'localhost',
-        'PORT': '5432',
+
+     "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": os.environ.get("DB_PORT"),
     }
 }
+
+   
+    
+    
+
 
 
 # Password validation
