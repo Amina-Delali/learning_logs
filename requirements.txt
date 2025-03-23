@@ -54,3 +54,7 @@ waitress==3.0.2
 watchdog==6.0.0
 yaspin==2.5.0
 zipp==3.21.0
+dj-database-url==2.3.0
+dj-static==0.0.6
+python-decouple==3.8
+
