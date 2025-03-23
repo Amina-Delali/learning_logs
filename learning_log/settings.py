@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
+import mimetypes
+mimetypes.add_type("text/javascript", ".js", True)
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +31,7 @@ SECRET_KEY = 'django-insecure-^f5)-ikokhvgm(@&kwcdmih1_2xvdz^utec$h73i178-(k!)ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -38,9 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
-
+    'django.contrib.staticfiles'
     
     # Third party apps
     'bootstrap3',   
@@ -52,7 +54,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,26 +84,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'learning_log.wsgi.app'
 
 
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 DATABASES = {
+"default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
+        "OPTIONS": {'sslmode': 'require'},
 
-     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT"),
     }
 }
 
@@ -164,11 +161,11 @@ BOOTSTRAP3 = {
 
 # Settings for netlify (heroku originally)
 
-if os.getcwd() == '/app':
-    import dj_database_url
-    DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
-    }
+# if os.getcwd() == '/app':
+#     import dj_database_url
+#     DATABASES = {
+#     'default': dj_database_url.config(default='postgres://localhost')
+#     }
     
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 
@@ -181,10 +178,10 @@ ALLOWED_HOSTS = ['*',"127.0.0.1", ".vercel.app", ".now.sh"]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles','static'))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+print(STATICFILES_DIRS)
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+print(STATIC_ROOT)

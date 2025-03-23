@@ -5,11 +5,11 @@
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-      "distDir": "staticfiles"
+      "distDir": "learning_log/staticfiles"
       }
     },
     {
-      "src": "/learning_log/wsgi.py",
+      "src": "learning_log/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }
@@ -25,5 +25,7 @@
       "dest": "/static/$1"
     }
    
-  ]
+  ],
+  "outputDirectory": "learning_log/staticfiles"
+
 }
